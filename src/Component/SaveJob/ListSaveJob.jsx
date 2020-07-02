@@ -18,9 +18,11 @@ class ListSaveJob extends Component {
     this.props.getCurrentInfo();
   }
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      SaveJobs: nextProps.info.info[0].savejob,
-    });
+    if (nextProps.info.info) {
+      this.setState({
+        SaveJobs: nextProps.info.info.savejob,
+      });
+    }
   }
 
   DeleteClick(id) {
@@ -28,7 +30,6 @@ class ListSaveJob extends Component {
   }
 
   render() {
-    console.log();
     return (
       <div className="ApplyedJoblist" style={{ margin: "35px 0px" }}>
         <div className="container">

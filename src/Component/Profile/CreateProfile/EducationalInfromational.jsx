@@ -40,8 +40,8 @@ class EducationalInfromational extends Component {
       GraduationYear: this.state.GraduationYear,
       GraduationPercentage: this.state.GraduationPercentage,
     };
-    console.log(this.props.info.info[0]._id);
-    this.props.addEducation(this.props.info.info[0]._id, EduData);
+
+    this.props.addEducation(this.props.info.info._id, EduData);
   }
 
   OnChange(e) {

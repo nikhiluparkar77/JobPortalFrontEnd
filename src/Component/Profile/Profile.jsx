@@ -7,8 +7,8 @@ import DisplayProfile from "./DisplayProfile";
 class Profile extends Component {
   render() {
     const { user } = this.props.auth;
+    const { auth } = this.props;
     const { info } = this.props.info;
-    const FilterData = info.filter((item) => item.userId === user.id);
 
     const CreateProfile = (
       <Link to={`/cerate-profile/${user.id}`}>
@@ -78,7 +78,7 @@ class Profile extends Component {
                   </h5>
                 </div>
                 <div className="card-body">
-                  {FilterData === true ? CreateProfile : EditProfile}
+                  {info.length > 0 ? CreateProfile : EditProfile}
                 </div>
               </div>
             </div>

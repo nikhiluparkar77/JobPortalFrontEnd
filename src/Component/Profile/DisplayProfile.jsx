@@ -30,9 +30,10 @@ class DisplayProfile extends Component {
       const id = nextProps.auth.user.id;
       window.location = `/cerate-profile/${id}`;
     }
-
+    const dataSet = this.state.information;
+    dataSet.push(nextProps.info);
     this.setState({
-      information: nextProps.info,
+      information: dataSet,
       id: nextProps.auth.user.id,
     });
   }
@@ -52,9 +53,6 @@ class DisplayProfile extends Component {
   render() {
     const { user } = this.props.auth;
     const { info } = this.props;
-    const FilterData = this.state.information.filter(
-      (item) => item.userId === user.id
-    );
 
     const informationData = (
       <div className="DisplayProfile">
@@ -352,7 +350,7 @@ class DisplayProfile extends Component {
 
     return (
       <div>
-        {FilterData === true ? (
+        {this.state.information.length === 0 ? (
           <Link to={`/cerate-profile/${user.id}`}>
             {" "}
             <button

@@ -36,7 +36,7 @@ class ProfessionalInformational extends Component {
       Experience: this.state.Experience,
     };
 
-    this.props.addProfessional(this.props.info.info[0]._id, eduData);
+    this.props.addProfessional(this.props.info.info._id, eduData);
   }
 
   render() {

@@ -19,7 +19,7 @@ class ListApplyJobs extends Component {
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
-      AppliedJob: nextProps.info.info[0].applyjob,
+      AppliedJob: nextProps.info.info.applyjob,
     });
   }
 
@@ -28,7 +28,6 @@ class ListApplyJobs extends Component {
   }
 
   render() {
-    console.log();
     return (
       <div className="ApplyedJoblist" style={{ margin: "35px 0px" }}>
         <div className="container">
