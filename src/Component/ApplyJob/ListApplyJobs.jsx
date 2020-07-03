@@ -28,6 +28,57 @@ class ListApplyJobs extends Component {
   }
 
   render() {
+    let display;
+    if (this.state.AppliedJob.length === 0) {
+      display = (
+        <div>
+          <p style={{ fontSize: "18px", textAlign: "center" }}>
+            No Apply Job In List
+          </p>
+        </div>
+      );
+    } else {
+      display = (
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>Company</th>
+              <th>Experience</th>
+              <th>Apply Date</th>
+              <th>Join Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.AppliedJob.map((item, index) => (
+              <tr key={index}>
+                <td>{item.position}</td>
+                <td>{item.company}</td>
+                <td>{item.experience}</td>
+                <td>
+                  <Moment format="YYYY/MM/DD">{item.date}</Moment>
+                </td>
+                <td>
+                  {" "}
+                  <Moment format="YYYY/MM/DD">{item.joinDate}</Moment>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={(e) => {
+                      this.DeleteClick(item._id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    }
     return (
       <div className="ApplyedJoblist" style={{ margin: "35px 0px" }}>
         <div className="container">
@@ -35,44 +86,7 @@ class ListApplyJobs extends Component {
             <div className="col-md-12">
               <p style={{ fontSize: "24px", fontWeight: "600" }}>Apply Jobs</p>
               <hr />
-              <table className="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>Position</th>
-                    <th>Company</th>
-                    <th>Experience</th>
-                    <th>Apply Date</th>
-                    <th>Join Date</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.AppliedJob.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item.position}</td>
-                      <td>{item.company}</td>
-                      <td>{item.experience}</td>
-                      <td>
-                        <Moment format="YYYY/MM/DD">{item.date}</Moment>
-                      </td>
-                      <td>
-                        {" "}
-                        <Moment format="YYYY/MM/DD">{item.joinDate}</Moment>
-                      </td>
-                      <td>
-                        <button
-                          className="btn btn-outline-danger"
-                          onClick={(e) => {
-                            this.DeleteClick(item._id);
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              {display}
             </div>
           </div>
         </div>

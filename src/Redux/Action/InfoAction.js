@@ -43,15 +43,15 @@ export const createInfo = (infoData) => (dispatch) => {
 };
 
 // Delete Info
-export const deleteInfo = (id, userId) => (dispatch) => {
+export const deleteInfo = () => (dispatch) => {
   dispatch(setInfoLoading());
   axios
-    .delete(`http://localhost:5000/api/profile/${id}`)
+    .delete(`http://localhost:5000/api/profile`)
     .then((res) =>
       dispatch({
         type: DELETE_INFO,
         payload: res.data,
-      })((window.location = `/cerate-profile/${userId}`))
+      })(localStorage.removeItem("jwtToken")((window.location = "/sign-up")))
     )
     .catch((err) => console.log(err));
 };

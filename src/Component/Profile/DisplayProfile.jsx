@@ -38,8 +38,8 @@ class DisplayProfile extends Component {
     });
   }
 
-  DeleteInfo(id) {
-    this.props.deleteInfo(id, this.props.auth.user.id);
+  DeleteInfo() {
+    this.props.deleteInfo();
   }
   DeleteProfessional(id) {
     this.props.deleteProfessional(id);

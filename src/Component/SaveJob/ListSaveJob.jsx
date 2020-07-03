@@ -30,6 +30,53 @@ class ListSaveJob extends Component {
   }
 
   render() {
+    let display;
+    if (this.state.SaveJobs.length === 0) {
+      display = (
+        <div>
+          <p style={{ fontSize: "18px", textAlign: "center" }}>
+            No Save Job In List
+          </p>
+        </div>
+      );
+    } else {
+      display = (
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>Company</th>
+              <th>Experience</th>
+              <th>Save Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.SaveJobs.map((item, index) => (
+              <tr key={index}>
+                <td>{item.position}</td>
+                <td>{item.company}</td>
+                <td>{item.experience}</td>
+                <td>
+                  <Moment format="YYYY/MM/DD">{item.date}</Moment>
+                </td>
+
+                <td>
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={(e) => {
+                      this.DeleteClick(item._id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    }
     return (
       <div className="ApplyedJoblist" style={{ margin: "35px 0px" }}>
         <div className="container">
@@ -37,40 +84,7 @@ class ListSaveJob extends Component {
             <div className="col-md-12">
               <p style={{ fontSize: "24px", fontWeight: "600" }}>Save Jobs</p>
               <hr />
-              <table className="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>Position</th>
-                    <th>Company</th>
-                    <th>Experience</th>
-                    <th>Save Date</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.SaveJobs.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item.position}</td>
-                      <td>{item.company}</td>
-                      <td>{item.experience}</td>
-                      <td>
-                        <Moment format="YYYY/MM/DD">{item.date}</Moment>
-                      </td>
-
-                      <td>
-                        <button
-                          className="btn btn-outline-danger"
-                          onClick={(e) => {
-                            this.DeleteClick(item._id);
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              {display}
             </div>
           </div>
         </div>
